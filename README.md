@@ -334,7 +334,6 @@ make run-gui-uart
 I target `run-text-uart`, `run-gui-proxy` e `run-text-proxy` sono disponibili per i flussi diagnostici documentati nel Makefile.
 
 ## Percorso firmware
-
 Le directory `6.10_OLD/` e `6.10_NEW/` contengono due percorsi separati per l’integrazione del kernel in un’immagine firmware. Non sono necessari per il normale sviluppo con QEMU.
 
 ```bash
@@ -350,6 +349,39 @@ Dopo `make firmware-img`, verificare l’immagine con:
 ```
 
 Lo script controlla la posizione del kernel, gli offset di caricamento, la geometria dell’immagine e le impronte dei componenti principali.
+
+## Specifiche tecniche e performance del firmware
+
+Le prestazioni del firmware sono riportate in termini di footprint, capacità di caricamento, layout su disco e configurazione di esecuzione. I valori seguenti provengono dalle build completate nella release `v0.2.5.33`; non sono stime teoriche.
+
+### Footprint degli artefatti
+
+| Artefatto | Firmware completo | Firmware leggero | Note |
+|---|---:|---:|---|
+| Stage 1 | 512 byte | 512 byte | Settore BIOS iniziale. |
+| Stage 2 | 40.463 byte | 1.238 byte | Capacità configurata: 65.536 byte, pari a 128 settori. |
+| Kernel NATALIZIOOS | 519.804 byte | 519.804 byte | Immagine raw caricata come `OS.BIN`. |
+| Boot EFI | 4.608 byte | 4.608 byte | Artefatto EFI generato dalla build. |
+| Suite diagnostica | 32.768 byte | 32.768 byte | Componente separato nell’immagine firmware. |
+| Immagine disco | 10 MiB | 6 MiB | Rispettivamente 20.480 e 12.288 settori da 512 byte. |
+
+Il kernel occupa **1.016 settori/clusters** nell’immagine FAT16. Rispetto al limite di caricamento del percorso BIOS di 1.152 settori, il footprint attuale utilizza circa **l’88,2%** della capacità disponibile. Il margine residuo è quindi di 136 settori, pari a circa 69.632 byte prima dell’espansione del formato o del loader.
+
+### Utilizzo della capacità di Stage 2
+
+Nel firmware completo Stage 2 utilizza circa **il 61,7%** del limite configurato (`40.463 / 65.536` byte). Il firmware leggero utilizza circa **l’1,9%** dello stesso limite (`1.238 / 65.536` byte). Questa differenza riflette la quantità di servizi inclusi nei due percorsi e non rappresenta, da sola, una misura del tempo di avvio.
+
+### Layout e località dei dati
+
+| Area | Firmware completo | Firmware leggero |
+|---|---:|---:|
+| Stage 2 NATALIZIOOS | LBA 14.000 | — |
+| Kernel NATALIZIOOS | LBA 15.000 | LBA 2.000 |
+| Suite diagnostica | LBA 3.000 | LBA 3.000 |
+| Log di sistema | LBA 2.000 | LBA 11.000 |
+| Partizione utilizzabile | LBA 34–20.445 | LBA 34–12.253 |
+
+Il layout separa il kernel, i log, la suite diagnostica e i componenti di aggiornamento. Nel firmware completo le capsule `UPDATE.CAP` e `ROLLBACK.CAP` occupano 80 settori ciascuna; nel firmware leggero le capsule generate occupano 3 settori ciascuna, con 2.048 byte effettivamente presenti nel contenitore FAT16.
 
 ## Verifica della build
 
