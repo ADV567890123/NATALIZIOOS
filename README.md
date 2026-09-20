@@ -7,18 +7,18 @@
 [![Build](https://img.shields.io/badge/build-verified-success.svg)](BUILD_STATUS.md)
 [![Stato](https://img.shields.io/badge/stato-development-f0ad4e.svg)](BUILD_STATUS.md)
 
-![Logo NATALIZIOOS](https://private-us-east-1.manuscdn.com/sessionFile/KrNUk8H1Q5RbN9bUYfrMU3/sandbox/8uunR9vsZSd2BevbrfRkJn-images_1789904641264_na1fn_L2hvbWUvdWJ1bnR1L3dvcmsvbmF0YWxpemlvb3MtdjAuMi41LjMzL3YwLjIuNS4zM18xL2Fzc2V0cy9uYXRhbGl6aW9vcy1sb2dv.svg?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvS3JOVWs4SDFRNVJiTjliVVlmck1VMy9zYW5kYm94Lzh1dW5SOXZzWlNkMkJldmJyZlJrSm4taW1hZ2VzXzE3ODk5MDQ2NDEyNjRfbmExZm5fTDJodmJXVXZkV0oxYm5SMUwzZHZjbXN2Ym1GMFlXeHBlbWx2YjNNdGRqQXVNaTQxTGpNekwzWXdMakl1TlM0ek0xOHhMMkZ6YzJWMGN5OXVZWFJoYkdsNmFXOXZjeTFzYjJkdi5zdmciLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3OTIwMjI0MDB9fX1dfQ__&Key-Pair-Id=K2QY5QTL8JSY6C&Signature=MEQCIAqJ1SbN2K-Rw~4IQxjyYdnH2X6lIeNzJnT~JCrg~fCcAiBjJe1ewzZbMzHGM254DGBEHt8gFpB6J0GJDV87W7s6Kg__)
+![Logo NATALIZIOOS](https://private-us-east-1.manuscdn.com/sessionFile/KrNUk8H1Q5RbN9bUYfrMU3/sandbox/vRl7puoK6I9ji6CvpZ8wjn-images_1789905457506_na1fn_L2hvbWUvdWJ1bnR1L3dvcmsvbmF0YWxpemlvb3MtdjAuMi41LjMzL3YwLjIuNS4zM18xL2Fzc2V0cy9uYXRhbGl6aW9vcy1sb2dv.svg?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvS3JOVWs4SDFRNVJiTjliVVlmck1VMy9zYW5kYm94L3ZSbDdwdW9LNkk5amk2Q3ZwWjh3am4taW1hZ2VzXzE3ODk5MDU0NTc1MDZfbmExZm5fTDJodmJXVXZkV0oxYm5SMUwzZHZjbXN2Ym1GMFlXeHBlbWx2YjNNdGRqQXVNaTQxTGpNekwzWXdMakl1TlM0ek0xOHhMMkZ6YzJWMGN5OXVZWFJoYkdsNmFXOXZjeTFzYjJkdi5zdmciLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3OTIwMjI0MDB9fX1dfQ__&Key-Pair-Id=K2QY5QTL8JSY6C&Signature=MEYCIQD2qUKgIfo~lJPDd97OQukFVM1f6S6i8JssGUw68WIfzwIhAI-dLRywnCXHEwLkmx307r4KCaAAxYTyTif6DQ1m4-L6)
 
-
+## Identità visiva
 > **NATALIZIOOS** è un sistema operativo sperimentale freestanding per architetture x86 a 32 bit. Il progetto implementa una catena di avvio BIOS, un kernel monolitico, driver hardware, gestione della memoria, filesystem virtuali, shell e tre ambienti desktop sviluppati a basso livello.
-
 La release descritta da questo repository è la **`v0.2.5.33`**. L’immagine principale viene generata come disco raw avviabile e può essere eseguita in ambiente **QEMU** per attività di sviluppo, verifica e studio dei sistemi operativi.
-
 > **Stato del progetto** — NATALIZIOOS è in sviluppo. Le funzionalità, le API interne e il layout dell’immagine possono cambiare tra le release. Il progetto non è destinato a sistemi di produzione né all’installazione su hardware contenente dati importanti.
 
 ## Sommario
-
+- [Identità visiva](#identità-visiva)
 - [Obiettivi](#obiettivi)
+- [Metriche complete del repository](#metriche-complete-del-repository)
+
 - [Panoramica tecnica](#panoramica-tecnica)
 - [Funzionalità](#funzionalità)
 - [Ambienti desktop](#ambienti-desktop)
@@ -27,11 +27,11 @@ La release descritta da questo repository è la **`v0.2.5.33`**. L’immagine pr
 - [Compilazione](#compilazione)
 - [Esecuzione con QEMU](#esecuzione-con-qemu)
 - [Percorso firmware](#percorso-firmware)
+- [Specifiche tecniche e prestazioni del firmware](#specifiche-tecniche-e-prestazioni-del-firmware)
 - [Verifica della build](#verifica-della-build)
 - [Limitazioni note](#limitazioni-note)
 - [Licenze e attribuzioni](#licenze-e-attribuzioni)
 - [Contributi](#contributi)
-- [Immagini](#Immagini)
 
 ## Obiettivi
 
@@ -39,7 +39,7 @@ NATALIZIOOS nasce come piattaforma di ricerca e sperimentazione su tre aree prin
 
 1. **Sistemi operativi freestanding** — avvio senza dipendenze da un sistema ospitante, gestione diretta delle risorse e sviluppo di una toolchain minima.
 2. **Grafica a basso livello** — controllo del framebuffer, rendering di primitive, gestione dell’input e costruzione di ambienti desktop senza framework del sistema ospitante.
-3. **Strati software object-oriented** — runtime Objective-C locale, classi, selettori, dispatch dei messaggi e un modello ridotto di applicazione, finestra e vista eseguito nel contesto del sistema operativo.
+3. **Strati software orientati agli oggetti** — runtime Objective-C locale, classi, selettori, dispatch dei messaggi e un modello ridotto di applicazione, finestra e vista eseguito nel contesto del sistema operativo.
 
 Il progetto privilegia la leggibilità dell’architettura, la verificabilità del percorso di boot e la separazione tra componenti sperimentali.
 
@@ -88,7 +88,7 @@ Il limite di caricamento imposto dal bootloader è una caratteristica tecnica ri
 
 - ingresso in modalità protetta x86;
 - gestione GDT, IDT, PIC e interrupt hardware;
-- physical memory manager, paging e heap del kernel;
+- gestore della memoria fisica, paging e heap del kernel;
 - timer e primitive di scheduling;
 - gestione di utenti, sessioni e shell;
 - framebuffer e modalità grafiche a risoluzione variabile;
@@ -141,7 +141,7 @@ NATALIZIOOS include tre ambienti desktop indipendenti. La separazione consente d
 
 | Ambiente | Avvio | Caratteristiche |
 |---|---|---|
-| **Desktop 1** | `desktop` oppure `gui` | Desktop nativo su framebuffer con finestre, taskbar, terminale, editor, file manager, calcolatrice e strumenti diagnostici. |
+| **Desktop 1** | `desktop` oppure `gui` | Desktop nativo su framebuffer con finestre, barra delle applicazioni, terminale, editor, file manager, calcolatrice e strumenti diagnostici. |
 | **Desktop 2** | `desktop2` oppure `gui2` | Desktop con core applicativo separato, bridge di input/framebuffer, file manager, terminale, applicazioni e giochi integrati. |
 | **Desktop 3** | Selezione dal menu post-login | Ambiente di integrazione per runtime, viste, finestre, rendering, rilevamento dispositivi e componenti audio. |
 
@@ -173,7 +173,7 @@ La documentazione tecnica del bridge e delle relative limitazioni è disponibile
 
 ### Desktop 3
 
-Desktop 3 è un ambiente tecnico dedicato alla verifica dello stack grafico e object-oriented del sistema. L’implementazione principale si trova in `kernel/desktop3.c`.
+Desktop 3 è un ambiente tecnico dedicato alla verifica dello stack grafico e orientato agli oggetti del sistema. L’implementazione principale si trova in `kernel/desktop3.c`.
 
 Il desktop costruisce una gerarchia composta da applicazione, finestre e viste. Il rendering viene eseguito attraverso il motore grafico del progetto, con coordinate locali e stato grafico annidato.
 
@@ -186,13 +186,13 @@ La release attuale include:
 - viste e finestre gestite tramite il modello AppKit locale;
 - rendering con riempimenti, bordi, tracciati e traslazioni;
 - rilevamento di CPU, disco e memoria tramite DriverKit;
-- meter audio basato su smoothing e conversione mu-law;
+- indicatore audio basato su smoothing e conversione mu-law;
 - verifiche integrate per comandi, memoria, filesystem, bridge e runtime;
 - area degli strumenti scorrevole tramite i tasti freccia.
 
 La risoluzione di riferimento è **1024×768**. Premere `Esc` per tornare al menu di selezione dell’ambiente.
 
-Desktop 3 non è ancora un window manager completo: la sua finalità attuale è verificare l’integrazione degli strati grafici e object-oriented all’interno del kernel.
+Desktop 3 non è ancora un window manager completo: la sua finalità attuale è verificare l’integrazione degli strati grafici e orientato agli oggetti all’interno del kernel.
 
 ## Struttura del repository
 
@@ -207,7 +207,7 @@ objc/             Runtime Objective-C locale
 appkit/           NSView, NSWindow e NSApplication
 gfx/              Motore grafico vettoriale e diretto
 mach/             Bridge per le API Mach utilizzate dal progetto
-driverkit/        Modello object-oriented dei dispositivi
+driverkit/        Modello orientato agli oggetti dei dispositivi
 soundkit/         Meter audio e logica di visualizzazione
 ported/           Utility e funzioni libc-style
 scripts/          Script di build e verifica
@@ -334,6 +334,7 @@ make run-gui-uart
 I target `run-text-uart`, `run-gui-proxy` e `run-text-proxy` sono disponibili per i flussi diagnostici documentati nel Makefile.
 
 ## Percorso firmware
+
 Le directory `6.10_OLD/` e `6.10_NEW/` contengono due percorsi separati per l’integrazione del kernel in un’immagine firmware. Non sono necessari per il normale sviluppo con QEMU.
 
 ```bash
@@ -350,7 +351,7 @@ Dopo `make firmware-img`, verificare l’immagine con:
 
 Lo script controlla la posizione del kernel, gli offset di caricamento, la geometria dell’immagine e le impronte dei componenti principali.
 
-## Specifiche tecniche e performance del firmware
+## Specifiche tecniche e prestazioni del firmware
 
 Le prestazioni del firmware sono riportate in termini di footprint, capacità di caricamento, layout su disco e configurazione di esecuzione. I valori seguenti provengono dalle build completate nella release `v0.2.5.33`; non sono stime teoriche.
 
@@ -382,6 +383,20 @@ Nel firmware completo Stage 2 utilizza circa **il 61,7%** del limite configurato
 | Partizione utilizzabile | LBA 34–20.445 | LBA 34–12.253 |
 
 Il layout separa il kernel, i log, la suite diagnostica e i componenti di aggiornamento. Nel firmware completo le capsule `UPDATE.CAP` e `ROLLBACK.CAP` occupano 80 settori ciascuna; nel firmware leggero le capsule generate occupano 3 settori ciascuna, con 2.048 byte effettivamente presenti nel contenitore FAT16.
+
+### Configurazione di riferimento
+
+Le build firmware sono state eseguite con NASM, Python 3 e QEMU System x86. I target di esecuzione del Makefile utilizzano `qemu-system-i386`, 64 MiB di RAM, VGA standard e seriale su standard output. La build è stata completata per entrambi i percorsi; il conteggio dei byte e il layout sono verificabili nuovamente con:
+
+```bash
+make firmware-img
+make -C 6.10_NEW
+make -C 6.10_OLD info
+make -C 6.10_NEW info
+```
+
+Il progetto non include ancora un benchmark temporale automatizzato per misurare millisecondi di boot, throughput del framebuffer o latenza dei driver. Per questo motivo, questa sezione distingue intenzionalmente le metriche di footprint e layout dai benchmark dinamici: i valori riportati descrivono risorse occupate e capacità disponibili, non una promessa di prestazioni runtime su hardware reale.
+
 
 ## Verifica della build
 
@@ -419,12 +434,6 @@ La verifica del boot conferma la compilazione e l’avvio iniziale. Non sostitui
 - Le prestazioni e la compatibilità hardware non sono garantite al di fuori delle configurazioni testate in QEMU.
 
 ## Licenze e attribuzioni
-
-L’archivio non contiene un file di licenza unico al livello principale. Il codice originale del progetto è descritto dalla documentazione storica come proprietario; alcuni componenti conservano nei rispettivi file le note di copyright e le condizioni di licenza originali.
-
-Prima di distribuire il repository o aggiungere un identificatore SPDX al progetto, è necessario completare la revisione dei singoli componenti. Le note di copyright presenti nei sorgenti devono essere conservate.
-
-Questa sezione ha carattere informativo e non costituisce una licenza di distribuzione.
 
 ## Contributi
 
