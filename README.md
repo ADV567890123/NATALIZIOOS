@@ -6,13 +6,20 @@
 [![Esecuzione](https://img.shields.io/badge/emulatore-QEMU-4c9f70.svg)](Makefile)
 [![Build](https://img.shields.io/badge/build-verified-success.svg)](BUILD_STATUS.md)
 [![Stato](https://img.shields.io/badge/stato-development-f0ad4e.svg)](BUILD_STATUS.md)
+[![Licenza](https://img.shields.io/badge/licenza-proprietaria-b91c1c.svg)](LICENSE)
 
-![Logo NATALIZIOOS](https://private-us-east-1.manuscdn.com/sessionFile/KrNUk8H1Q5RbN9bUYfrMU3/sandbox/vRl7puoK6I9ji6CvpZ8wjn-images_1789905457506_na1fn_L2hvbWUvdWJ1bnR1L3dvcmsvbmF0YWxpemlvb3MtdjAuMi41LjMzL3YwLjIuNS4zM18xL2Fzc2V0cy9uYXRhbGl6aW9vcy1sb2dv.svg?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvS3JOVWs4SDFRNVJiTjliVVlmck1VMy9zYW5kYm94L3ZSbDdwdW9LNkk5amk2Q3ZwWjh3am4taW1hZ2VzXzE3ODk5MDU0NTc1MDZfbmExZm5fTDJodmJXVXZkV0oxYm5SMUwzZHZjbXN2Ym1GMFlXeHBlbWx2YjNNdGRqQXVNaTQxTGpNekwzWXdMakl1TlM0ek0xOHhMMkZ6YzJWMGN5OXVZWFJoYkdsNmFXOXZjeTFzYjJkdi5zdmciLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3OTIwMjI0MDB9fX1dfQ__&Key-Pair-Id=K2QY5QTL8JSY6C&Signature=MEYCIQD2qUKgIfo~lJPDd97OQukFVM1f6S6i8JssGUw68WIfzwIhAI-dLRywnCXHEwLkmx307r4KCaAAxYTyTif6DQ1m4-L6)
+![Logo NATALIZIOOS](https://private-us-east-1.manuscdn.com/sessionFile/KrNUk8H1Q5RbN9bUYfrMU3/sandbox/yIOywEWZmXoziFo1vyO6pi-images_1789905864876_na1fn_L2hvbWUvdWJ1bnR1L3dvcmsvbmF0YWxpemlvb3MtdjAuMi41LjMzL3YwLjIuNS4zM18xL2Fzc2V0cy9uYXRhbGl6aW9vcy1sb2dv.svg?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvS3JOVWs4SDFRNVJiTjliVVlmck1VMy9zYW5kYm94L3lJT3l3RVdabVhvemlGbzF2eU82cGktaW1hZ2VzXzE3ODk5MDU4NjQ4NzZfbmExZm5fTDJodmJXVXZkV0oxYm5SMUwzZHZjbXN2Ym1GMFlXeHBlbWx2YjNNdGRqQXVNaTQxTGpNekwzWXdMakl1TlM0ek0xOHhMMkZ6YzJWMGN5OXVZWFJoYkdsNmFXOXZjeTFzYjJkdi5zdmciLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3OTIwMjI0MDB9fX1dfQ__&Key-Pair-Id=K2QY5QTL8JSY6C&Signature=MEUCIGLuqXe~g0N14FDX-HI0he83AX8ZKK1WJcPhL1TTBcZNAiEA4CAFnbCFk4X0EZ34brLxn-rN28YAZePo0Evtnu~oP1A_)
 
 ## Identità visiva
+
+Sono disponibili due composizioni coordinate per l’utilizzo istituzionale e social: [orizzontale SVG](assets/natalizioos-logo-horizontal.svg) · [orizzontale PNG](assets/natalizioos-logo-horizontal.png) · [verticale SVG](assets/natalizioos-logo-vertical.svg) · [verticale PNG](assets/natalizioos-logo-vertical.png).
 > **NATALIZIOOS** è un sistema operativo sperimentale freestanding per architetture x86 a 32 bit. Il progetto implementa una catena di avvio BIOS, un kernel monolitico, driver hardware, gestione della memoria, filesystem virtuali, shell e tre ambienti desktop sviluppati a basso livello.
+
 La release descritta da questo repository è la **`v0.2.5.33`**. L’immagine principale viene generata come disco raw avviabile e può essere eseguita in ambiente **QEMU** per attività di sviluppo, verifica e studio dei sistemi operativi.
+
 > **Stato del progetto** — NATALIZIOOS è in sviluppo. Le funzionalità, le API interne e il layout dell’immagine possono cambiare tra le release. Il progetto non è destinato a sistemi di produzione né all’installazione su hardware contenente dati importanti.
+
+> **Proprietà** — NATALIZIOOS è un progetto proprietario. Il codice sorgente, la documentazione, gli asset grafici, gli script, le immagini e gli altri materiali del repository sono soggetti alla [Licenza Proprietaria NATALIZIOOS](LICENSE). Nessun diritto di copia, modifica, redistribuzione, sublicenza o uso commerciale è concesso al di fuori dei termini della licenza o di un’autorizzazione scritta del titolare.
 
 ## Sommario
 - [Identità visiva](#identità-visiva)
@@ -30,7 +37,7 @@ La release descritta da questo repository è la **`v0.2.5.33`**. L’immagine pr
 - [Specifiche tecniche e prestazioni del firmware](#specifiche-tecniche-e-prestazioni-del-firmware)
 - [Verifica della build](#verifica-della-build)
 - [Limitazioni note](#limitazioni-note)
-- [Licenze e attribuzioni](#licenze-e-attribuzioni)
+- [Licenza e proprietà intellettuale](#licenza-e-proprietà-intellettuale)
 - [Contributi](#contributi)
 
 ## Obiettivi
@@ -433,7 +440,17 @@ La verifica del boot conferma la compilazione e l’avvio iniziale. Non sostitui
 - Alcuni componenti sono sperimentali o storici e non appartengono alla build predefinita.
 - Le prestazioni e la compatibilità hardware non sono garantite al di fuori delle configurazioni testate in QEMU.
 
-## Licenze e attribuzioni
+## Licenza e proprietà intellettuale
+
+Il repository è distribuito con la **Licenza Proprietaria NATALIZIOOS**, disponibile nel file [`LICENSE`](LICENSE). Il Software è concesso in licenza e non viene venduto.
+
+La licenza consente esclusivamente l’uso personale o interno per valutazione, studio, ricerca, sviluppo e dimostrazione, oltre alla compilazione e all’esecuzione in ambienti personali o di laboratorio. Le modifiche sono consentite solo per uso interno e non distribuito.
+
+Sono vietati, salvo autorizzazione scritta del titolare, la pubblicazione, la redistribuzione, la sublicenza, la vendita, l’uso commerciale, l’integrazione in prodotti o servizi di terzi, la distribuzione di fork o binari derivati e l’uso dei nomi o dei loghi del progetto per suggerire approvazione o affiliazione.
+
+I componenti di terze parti eventualmente presenti possono essere soggetti a condizioni aggiuntive. Devono essere conservate tutte le note di copyright e le attribuzioni incluse nei rispettivi file. La licenza proprietaria non concede diritti su materiali che il titolare non sia autorizzato a concedere.
+
+Per i termini completi, le limitazioni di responsabilità e la procedura per richiedere autorizzazioni speciali, consultare [`LICENSE`](LICENSE).
 
 ## Contributi
 
@@ -447,6 +464,7 @@ Per contribuire al progetto:
 6. preservare le attribuzioni presenti nei componenti interessati.
 
 Le modifiche a bootloader, layout dell’immagine, memoria e framebuffer devono essere isolate e accompagnate da una verifica riproducibile.
+
 ## Immagini
 ![Descrizione della foto](01-avvio.png)
 ![Descrizione della foto](02-desktop1.png)
