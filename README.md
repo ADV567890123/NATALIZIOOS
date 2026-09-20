@@ -11,11 +11,7 @@
 ![Logo NATALIZIOOS](https://private-us-east-1.manuscdn.com/sessionFile/KrNUk8H1Q5RbN9bUYfrMU3/sandbox/yIOywEWZmXoziFo1vyO6pi-images_1789905864876_na1fn_L2hvbWUvdWJ1bnR1L3dvcmsvbmF0YWxpemlvb3MtdjAuMi41LjMzL3YwLjIuNS4zM18xL2Fzc2V0cy9uYXRhbGl6aW9vcy1sb2dv.svg?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvS3JOVWs4SDFRNVJiTjliVVlmck1VMy9zYW5kYm94L3lJT3l3RVdabVhvemlGbzF2eU82cGktaW1hZ2VzXzE3ODk5MDU4NjQ4NzZfbmExZm5fTDJodmJXVXZkV0oxYm5SMUwzZHZjbXN2Ym1GMFlXeHBlbWx2YjNNdGRqQXVNaTQxTGpNekwzWXdMakl1TlM0ek0xOHhMMkZ6YzJWMGN5OXVZWFJoYkdsNmFXOXZjeTFzYjJkdi5zdmciLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3OTIwMjI0MDB9fX1dfQ__&Key-Pair-Id=K2QY5QTL8JSY6C&Signature=MEUCIGLuqXe~g0N14FDX-HI0he83AX8ZKK1WJcPhL1TTBcZNAiEA4CAFnbCFk4X0EZ34brLxn-rN28YAZePo0Evtnu~oP1A_)
 
 ## Identità visiva
-
-Sono disponibili due composizioni coordinate per l’utilizzo istituzionale e social: [orizzontale SVG](assets/natalizioos-logo-horizontal.svg) · [orizzontale PNG](assets/natalizioos-logo-horizontal.png) · [verticale SVG](assets/natalizioos-logo-vertical.svg) · [verticale PNG](assets/natalizioos-logo-vertical.png).
-> **NATALIZIOOS** è un sistema operativo sperimentale freestanding per architetture x86 a 32 bit. Il progetto implementa una catena di avvio BIOS, un kernel monolitico, driver hardware, gestione della memoria, filesystem virtuali, shell e tre ambienti desktop sviluppati a basso livello.
-
-La release descritta da questo repository è la **`v0.2.5.33`**. L’immagine principale viene generata come disco raw avviabile e può essere eseguita in ambiente **QEMU** per attività di sviluppo, verifica e studio dei sistemi operativi.
+> **NATALIZIOOS** è un sistema operativo sperimentale freestanding per architetture x86 a 32 bit. Il progetto implementa una catena di avvio BIOS, un kernel monolitico, driver hardware, gestione della memoria, filesystem virtuali, shell e tre ambienti desktop sviluppati a basso livello.La release descritta da questo repository è la **`v0.2.5.33`**. L’immagine principale viene generata come disco raw avviabile e può essere eseguita in ambiente **QEMU** per attività di sviluppo, verifica e studio dei sistemi operativi.
 
 > **Stato del progetto** — NATALIZIOOS è in sviluppo. Le funzionalità, le API interne e il layout dell’immagine possono cambiare tra le release. Il progetto non è destinato a sistemi di produzione né all’installazione su hardware contenente dati importanti.
 
