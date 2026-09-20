@@ -31,6 +31,7 @@ La release descritta da questo repository è la **`v0.2.5.33`**. L’immagine pr
 - [Limitazioni note](#limitazioni-note)
 - [Licenze e attribuzioni](#licenze-e-attribuzioni)
 - [Contributi](#contributi)
+- [Immagini](#Immagini)
 
 ## Obiettivi
 
