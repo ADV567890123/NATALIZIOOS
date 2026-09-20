@@ -1,24 +1,128 @@
-This is free and unencumbered software released into the public domain.
+LICENZA PROPRIETARIA NATALIZIOOS
+Versione 1.0 — 20 settembre 2026
 
-Anyone is free to copy, modify, publish, use, compile, sell, or
-distribute this software, either in source code form or as a compiled
-binary, for any purpose, commercial or non-commercial, and by any
-means.
+Copyright © 2026 NATALIZIOOS Project. Tutti i diritti riservati.
 
-In jurisdictions that recognize copyright laws, the author or authors
-of this software dedicate any and all copyright interest in the
-software to the public domain. We make this dedication for the benefit
-of the public at large and to the detriment of our heirs and
-successors. We intend this dedication to be an overt act of
-relinquishment in perpetuity of all present and future rights to this
-software under copyright law.
+La presente Licenza disciplina l’uso del codice sorgente, della documentazione,
+degli asset grafici, degli script, delle immagini, dei binari e degli altri
+materiali distribuiti con il progetto NATALIZIOOS (complessivamente, il
+“Software”). Il Software è concesso in licenza e non venduto.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
-OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-OTHER DEALINGS IN THE SOFTWARE.
+Per “Titolare” si intende NATALIZIOOS Project e ogni soggetto che detenga
+legittimamente i diritti sul materiale specifico distribuito con il Software.
 
-For more information, please refer to <https://unlicense.org>
+1. CONCESSIONE LIMITATA
+
+Il Titolare concede al destinatario una licenza personale, limitata, non
+esclusiva, non trasferibile e revocabile per:
+
+ a) scaricare e conservare una copia del Software;
+ b) esaminare il Software per finalità di valutazione, studio, ricerca,
+    sviluppo e dimostrazione;
+ c) compilare ed eseguire il Software in ambienti personali o di laboratorio,
+    inclusi emulatori e macchine virtuali;
+ d) apportare modifiche esclusivamente per uso interno e non distribuito,
+    purché le copie modificate restino soggette alla presente Licenza.
+
+La concessione non trasferisce la proprietà del Software né alcun diritto sui
+marchi, sui nomi commerciali, sui loghi o sugli altri segni distintivi del
+progetto.
+
+2. USI VIETATI
+
+Salvo preventiva autorizzazione scritta del Titolare, è vietato:
+
+ a) distribuire, pubblicare, sublicenziare, vendere, noleggiare o concedere in
+    altro modo il Software o una sua parte;
+ b) distribuire copie modificate, fork, patch, immagini, binari o pacchetti
+    derivati destinati a terzi;
+ c) incorporare il Software o una sua parte in prodotti, servizi, firmware,
+    sistemi operativi o applicazioni distribuiti commercialmente o pubblicamente;
+ d) utilizzare il Software per fornire un servizio a terzi o come componente
+    di un’offerta SaaS, hosting, appliance o prodotto embedded;
+ e) rimuovere o alterare copyright, avvisi di proprietà, note di licenza,
+    identificativi, loghi o informazioni di attribuzione;
+ f) utilizzare il nome NATALIZIOOS o i relativi loghi per suggerire
+    sponsorizzazione, approvazione o affiliazione senza autorizzazione;
+ g) aggirare limitazioni tecniche, controlli di accesso o misure introdotte
+    per proteggere il Software e i diritti del Titolare.
+
+3. ATTRIBUZIONI E COMPONENTI DI TERZI
+
+Il Software può contenere componenti, riferimenti o materiali soggetti a
+condizioni separate. Tali condizioni restano applicabili ai rispettivi
+componenti e non vengono sostituite dalla presente Licenza. Il destinatario
+deve conservare ogni avviso di copyright e ogni informazione di attribuzione
+presente nei file distribuiti.
+
+La presente Licenza non concede diritti su materiale di terzi che il Titolare
+non sia autorizzato a concedere.
+
+4. MODIFICHE INTERNE
+
+Le modifiche realizzate esclusivamente per uso personale o interno non devono
+essere pubblicate. Qualora il destinatario riceva un’autorizzazione scritta a
+distribuire una modifica, tale distribuzione dovrà rispettare esattamente i
+limiti, gli avvisi e le condizioni indicati nell’autorizzazione.
+
+5. RISERVA DEI DIRITTI
+
+Tutti i diritti non espressamente concessi dalla presente Licenza sono
+riservati al Titolare. Nessuna disposizione costituisce una cessione, licenza
+implicita o rinuncia a diritti d’autore, brevetti, marchi, segreti commerciali
+o altri diritti di proprietà intellettuale.
+
+6. NESSUNA GARANZIA
+
+IL SOFTWARE È FORNITO “COSÌ COM’È” E “SECONDO DISPONIBILITÀ”, SENZA GARANZIE
+ESPRESSE O IMPLICITE, INCLUSE, A TITOLO ESEMPLIFICATIVO, GARANZIE DI TITOLARITÀ,
+NON VIOLAZIONE, COMMERCIABILITÀ, IDONEITÀ A UNO SCOPO SPECIFICO, SICUREZZA,
+ACCURATEZZA, DISPONIBILITÀ, COMPATIBILITÀ O FUNZIONAMENTO ININTERROTTO.
+
+Il Software è sperimentale e può causare perdita di dati, danneggiamento di
+immagini disco, incompatibilità hardware, arresti anomali o altri danni. Il
+destinatario è responsabile della valutazione dei rischi, dei backup e
+dell’ambiente nel quale il Software viene eseguito.
+
+7. LIMITAZIONE DI RESPONSABILITÀ
+
+NELLA MISURA MASSIMA CONSENTITA DALLA LEGGE APPLICABILE, IL TITOLARE NON SARÀ
+RESPONSABILE PER DANNI DIRETTI, INDIRETTI, INCIDENTALI, SPECIALI, CONSEQUENZIALI
+O ESEMPLARI, PERDITA DI DATI, PERDITA DI PROFITTI, INTERRUZIONE DELL’ATTIVITÀ,
+DANNI A SISTEMI O COSTI DI SOSTITUZIONE DERIVANTI DALL’USO O DALL’IMPOSSIBILITÀ
+DI USARE IL SOFTWARE, ANCHE SE IL TITOLARE È STATO INFORMATO DELLA POSSIBILITÀ
+DI TALI DANNI.
+
+8. RISOLUZIONE
+
+La Licenza termina automaticamente in caso di violazione dei suoi termini.
+Alla risoluzione, il destinatario deve cessare ogni uso del Software e,
+quando richiesto dal Titolare, eliminare tutte le copie in suo possesso o
+controllo. Le clausole relative a proprietà, usi vietati, attribuzioni,
+garanzie, responsabilità e legge applicabile resteranno efficaci per quanto
+previsto dalla loro natura.
+
+9. LEGGE APPLICABILE
+
+La presente Licenza deve essere interpretata secondo la legge applicabile
+nella giurisdizione del Titolare, senza pregiudizio per le norme imperative
+applicabili al destinatario. Ogni controversia sarà sottoposta alla
+competenza del foro competente secondo la legge applicabile.
+
+10. AUTORIZZAZIONI SPECIALI
+
+Richieste di autorizzazione per redistribuzione, uso commerciale, integrazione
+in prodotti, pubblicazione di modifiche o utilizzo dei marchi devono essere
+presentate al Titolare in forma scritta. Un’autorizzazione è valida solo se
+rilasciata da un rappresentante autorizzato del Titolare e deve indicare con
+precisione il Software, l’uso consentito, la durata e le eventuali condizioni.
+
+11. ACCETTAZIONE
+
+Scaricando, conservando, compilando o eseguendo il Software, il destinatario
+riconosce di aver letto la presente Licenza. Se non accetta i termini, non è
+autorizzato a utilizzare, copiare, modificare o conservare il Software, salvo
+quanto eventualmente consentito dalla legge applicabile.
+
+Questa Licenza è un documento proprietario del progetto NATALIZIOOS e non è
+una licenza open source.
