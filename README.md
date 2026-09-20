@@ -1,174 +1,416 @@
 # NATALIZIOOS
 
-Sistema operativo x86 a 32 bit scritto da zero in C e assembly NASM.
+[![Release](https://img.shields.io/badge/release-v0.2.5.33-1f6feb.svg)](CHANGELOG.md)
+[![Architettura](https://img.shields.io/badge/architettura-x86%20%7C%2032--bit-6f42c1.svg)](Makefile)
+[![Toolchain](https://img.shields.io/badge/toolchain-Clang%20%7C%20NASM%20%7C%20LLD-555555.svg)](Makefile)
+[![Esecuzione](https://img.shields.io/badge/emulatore-QEMU-4c9f70.svg)](Makefile)
+[![Build](https://img.shields.io/badge/build-verified-success.svg)](BUILD_STATUS.md)
+[![Stato](https://img.shields.io/badge/stato-development-f0ad4e.svg)](BUILD_STATUS.md)
 
-Bootloader proprio, memoria paginata, filesystem virtuale, driver
-hardware e **tre ambienti desktop grafici** a 1024×768. Nessun kernel
-esistente sotto: dal settore di avvio in poi è tutto scritto per
-questo sistema.
+![Logo NATALIZIOOS](https://private-us-east-1.manuscdn.com/sessionFile/KrNUk8H1Q5RbN9bUYfrMU3/sandbox/8uunR9vsZSd2BevbrfRkJn-images_1789904641264_na1fn_L2hvbWUvdWJ1bnR1L3dvcmsvbmF0YWxpemlvb3MtdjAuMi41LjMzL3YwLjIuNS4zM18xL2Fzc2V0cy9uYXRhbGl6aW9vcy1sb2dv.svg?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvS3JOVWs4SDFRNVJiTjliVVlmck1VMy9zYW5kYm94Lzh1dW5SOXZzWlNkMkJldmJyZlJrSm4taW1hZ2VzXzE3ODk5MDQ2NDEyNjRfbmExZm5fTDJodmJXVXZkV0oxYm5SMUwzZHZjbXN2Ym1GMFlXeHBlbWx2YjNNdGRqQXVNaTQxTGpNekwzWXdMakl1TlM0ek0xOHhMMkZ6YzJWMGN5OXVZWFJoYkdsNmFXOXZjeTFzYjJkdi5zdmciLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3OTIwMjI0MDB9fX1dfQ__&Key-Pair-Id=K2QY5QTL8JSY6C&Signature=MEQCIAqJ1SbN2K-Rw~4IQxjyYdnH2X6lIeNzJnT~JCrg~fCcAiBjJe1ewzZbMzHGM254DGBEHt8gFpB6J0GJDV87W7s6Kg__)
 
----
 
-## Avvio
+> **NATALIZIOOS** è un sistema operativo sperimentale freestanding per architetture x86 a 32 bit. Il progetto implementa una catena di avvio BIOS, un kernel monolitico, driver hardware, gestione della memoria, filesystem virtuali, shell e tre ambienti desktop sviluppati a basso livello.
 
-![Accesso al sistema](01-avvio.png)
+La release descritta da questo repository è la **`v0.2.5.33`**. L’immagine principale viene generata come disco raw avviabile e può essere eseguita in ambiente **QEMU** per attività di sviluppo, verifica e studio dei sistemi operativi.
 
-Bootloader in due stadi, firmware proprio con diagnostica, e un
-selettore che all'accensione lascia scegliere fra shell grafica,
-shell testuale e i tre desktop.
+> **Stato del progetto** — NATALIZIOOS è in sviluppo. Le funzionalità, le API interne e il layout dell’immagine possono cambiare tra le release. Il progetto non è destinato a sistemi di produzione né all’installazione su hardware contenente dati importanti.
 
-Funziona con **32, 64, 128, 256 MB e 1 GB** di RAM: la quantità viene
-letta dalla mappa E820 all'avvio, non dichiarata a priori.
+## Sommario
 
----
+- [Obiettivi](#obiettivi)
+- [Panoramica tecnica](#panoramica-tecnica)
+- [Funzionalità](#funzionalità)
+- [Ambienti desktop](#ambienti-desktop)
+- [Struttura del repository](#struttura-del-repository)
+- [Requisiti](#requisiti)
+- [Compilazione](#compilazione)
+- [Esecuzione con QEMU](#esecuzione-con-qemu)
+- [Percorso firmware](#percorso-firmware)
+- [Verifica della build](#verifica-della-build)
+- [Limitazioni note](#limitazioni-note)
+- [Licenze e attribuzioni](#licenze-e-attribuzioni)
+- [Contributi](#contributi)
 
-## Desktop 1 — gestore a finestre classico
+## Obiettivi
 
-![Desktop 1](02-desktop1.png)
+NATALIZIOOS nasce come piattaforma di ricerca e sperimentazione su tre aree principali:
 
-Finestre con barra del titolo e pulsanti, cartelle organizzate per
-argomento, applicazioni di sistema: terminale, editor, gestione file,
-strumenti di diagnostica.
+1. **Sistemi operativi freestanding** — avvio senza dipendenze da un sistema ospitante, gestione diretta delle risorse e sviluppo di una toolchain minima.
+2. **Grafica a basso livello** — controllo del framebuffer, rendering di primitive, gestione dell’input e costruzione di ambienti desktop senza framework del sistema ospitante.
+3. **Strati software object-oriented** — runtime Objective-C locale, classi, selettori, dispatch dei messaggi e un modello ridotto di applicazione, finestra e vista eseguito nel contesto del sistema operativo.
 
----
+Il progetto privilegia la leggibilità dell’architettura, la verificabilità del percorso di boot e la separazione tra componenti sperimentali.
 
-## Desktop 2 — ambiente completo
+## Metriche complete del repository
 
-![Desktop 2](03-desktop2.png)
+Le metriche riportate di seguito descrivono l’intero perimetro tecnico della release: sistema base, tre ambienti desktop, componenti di runtime e grafica, firmware e strumenti di sviluppo. Il conteggio è stato eseguito sulle righe dei file sorgente effettivamente presenti nell’archivio; sono esclusi immagini disco, file binari generati e directory di build.
 
-Quasi **13.000 righe**: gestore finestre con spostamento e
-ridimensionamento, dock, menu, filesystem virtuale, ricerca, e **28
-applicazioni** — terminale, file manager, editor di testo, fogli di
-calcolo, presentazioni, calcolatrice, impostazioni.
+| Area | Righe | Perimetro |
+|---|---:|---|
+| Sistema base | 46.344 | Boot, kernel, driver, filesystem e userspace. Include le implementazioni del Desktop 1 e del Desktop 3. |
+| Desktop 1 | 3.270 | Sottosezione di `kernel/desktop.c`, già compresa nel sistema base. |
+| Desktop 2 | 14.474 | Core completo in `desktop2_core/`. |
+| Desktop 3 | 1.103 | Sottosezione di `kernel/desktop3.c`, già compresa nel sistema base. |
+| Runtime e componenti grafici | 6.893 | Runtime Objective-C, AppKit, motore grafico, bridge, DriverKit, SoundKit e utility integrate. |
+| Firmware | 31.500 | Sorgenti di `6.10_OLD/` e `6.10_NEW/`. |
+| Script e strumenti | 769 | Script di build, verifica e utility di sviluppo. |
+| **Totale sorgente analizzato** | **99.980** | Categorie additive, con Desktop 1 e Desktop 3 evidenziati senza duplicazione. |
 
-Lo sfondo non è una fotografia: cielo, monti, neve e foschia vengono
-**calcolati a ogni disegno** da una funzione pseudo-casuale
-deterministica. Un'immagine da 1024×768 occuperebbe megabyte nel
-kernel; così costa qualche centinaio di byte di codice.
+Desktop 1 e Desktop 3 sono riportati anche come indicatori separati per rendere leggibile la consistenza dei due ambienti, ma non vengono sommati una seconda volta al totale del sistema base. Il totale completo corrisponde quindi a **99.980 righe di sorgente**. Per aggiornare le metriche automatiche della build è disponibile `make stato`.
 
-### Il cruscotto di sistema
+## Panoramica tecnica
 
-![Cruscotto](04-cruscotto.png)
+Il processo di avvio segue questa sequenza:
 
-Dieci pannelli che mostrano lo stato reale, letto dal sistema e non
-scritto a mano: memoria, dischi, attività, processore, adattatore
-video.
+```text
+Immagine BIOS raw
+      │
+      ├── Stage 1: bootstrap iniziale
+      ├── Stage 2: caricamento del kernel
+      └── Kernel NATALIZIOOS
+             ├── GDT, IDT, PIC e timer
+             ├── memoria fisica, paging e heap
+             ├── driver video, input e storage
+             ├── VFS e filesystem
+             ├── shell e login
+             └── ambiente grafico o testuale
+```
 
-Il pannello Processore legge tutto via **CPUID** — produttore,
-famiglia, modello, capacità — e la frequenza la **misura**, contando i
-cicli in un decimo di secondo scandito dal timer.
+Stage 1 viene scritto nel settore iniziale dell’immagine. Stage 2 viene collocato a partire dal settore 1. Il kernel viene scritto a partire dal settore 9 e caricato in memoria prima del passaggio alla modalità protetta.
 
-![Memoria](06-memoria.png)
+Il limite di caricamento imposto dal bootloader è una caratteristica tecnica rilevante: ogni incremento significativo del kernel deve essere valutato anche in relazione alla capacità di caricamento disponibile.
 
----
+## Funzionalità
 
-## Desktop 3 — su AppKit
-Il terzo ambiente è costruito su un'implementazione di **AppKit**, il
-framework a oggetti Ispirato a  NeXT: ogni elemento visibile è una `NSView`,
-ogni finestra una `NSWindow`, e il disegno passa da un motore in
-stile PostScript.
-L'aspetto segue ispirando a  NeXT: grigi, bordi in rilievo, menu staccato in alto a
-sinistra invece che barra in cima allo schermo, dock verticale a
-destra.
-**Perché è interessante tecnicamente.** La gerarchia delle viste fa sì
-che ogni vista disegni in coordinate proprie, come se fosse a zero: è
-il genitore a spostare l'origine scendendo nell'albero. Questo richiede
-uno stato grafico impilabile — `gsave` e `grestore` — ed è la ragione
-per cui il motore di disegno esiste in quella forma.
+### Kernel e servizi fondamentali
 
----
+- ingresso in modalità protetta x86;
+- gestione GDT, IDT, PIC e interrupt hardware;
+- physical memory manager, paging e heap del kernel;
+- timer e primitive di scheduling;
+- gestione di utenti, sessioni e shell;
+- framebuffer e modalità grafiche a risoluzione variabile;
+- filesystem virtuale, RAMFS e N.A.T.FS;
+- logging diagnostico tramite seriale;
+- supporto a immagini persistenti e snapshot QEMU.
 
-## Sotto il cofano
+### Driver e accesso all’hardware
 
-### Nucleo
+La directory `drivers/` contiene i moduli per i principali dispositivi utilizzati dal progetto:
 
-Memoria paginata fino a 1 GB, heap, scheduler con cambio di contesto,
-IDT e gestione degli interrupt, filesystem virtuale, gestione utenti.
+- VGA e framebuffer;
+- tastiera e mouse PS/2;
+- timer;
+- controller ATA;
+- enumerazione PCI;
+- rilevamento CPU;
+- RTC;
+- speaker;
+- UART;
+- memoria e strumenti diagnostici;
+- componenti di storage e monitoraggio del sistema.
 
-### Driver
+### Runtime e servizi grafici
 
-| Driver | Cosa fa |
-|---|---|
-| Video | framebuffer 1024×768 a 32 bit, doppio buffer |
-| Tastiera, mouse | PS/2 |
-| ATA | lettura e scrittura settori |
-| CPU | identificazione via CPUID, frequenza misurata |
-| RTC | orologio CMOS, con gestione BCD e aggiornamenti in corso |
-| Altoparlante | canale 2 del timer, segnali distinguibili |
-| vGPU | adattatore video con doppio buffer e zone modificate |
+Il sottosistema `objc/` implementa un runtime compatto con:
 
-### L'adattatore video
+- registrazione e ricerca dei selettori;
+- registro delle classi;
+- ereditarietà e ricerca dei metodi;
+- cache per il dispatch dei messaggi;
+- creazione e gestione delle istanze;
+- `objc_msgSend` in Assembly x86.
 
-Chi disegna non parla direttamente con lo schermo: compone il
-fotogramma fuori campo e lo consegna finito. Tiene traccia del
-rettangolo toccato dal disegno e copia solo quello.
+Il sottosistema `appkit/` espone un modello ridotto di:
 
-Nasce da un problema concreto — alcuni elementi venivano disegnati
-sulla superficie già visibile, subito dopo che la copia di sfondo li
-aveva cancellati, e si vedeva tremolare.
+- `NSView` per viste e gerarchie di contenuti;
+- `NSWindow` per finestre e contenitori;
+- `NSApplication` per la gestione dell’applicazione e il ciclo di rendering.
 
-### Due motori di disegno, affiancati
+Il sottosistema `gfx/` supporta un motore vettoriale con stato grafico, traslazioni, tracciati, riempimenti e bordi, oltre a un percorso di disegno diretto sul framebuffer.
 
-**PostScript** — tracciato, stato grafico, riempimento a scansione che
-gestisce le forme concave, curve di Bézier. È quello che AppKit si
-aspetta.
+### Utility e applicazioni
 
-**Diretto** — scrive subito nel framebuffer. Non sa fare curve né
-rotazioni, ma dove serve un rettangolo pieno costa una frazione.
+La directory `ported/` contiene comandi di sistema e funzioni libc-style utilizzati dalla shell e dagli ambienti grafici. Il Desktop 1 e il Desktop 2 includono inoltre strumenti per filesystem, diagnostica hardware, memoria, processi, storage, configurazione video e produttività di base.
 
-Condividono lo stesso rasterizzatore e la stessa superficie: cambiare
-motore non cambia dove si disegna.
+## Ambienti desktop
 
----
+NATALIZIOOS include tre ambienti desktop indipendenti. La separazione consente di verificare tre modelli differenti di gestione dell’interfaccia senza sovrapporre i rispettivi percorsi di rendering e input.
 
-## Provarlo
+| Ambiente | Avvio | Caratteristiche |
+|---|---|---|
+| **Desktop 1** | `desktop` oppure `gui` | Desktop nativo su framebuffer con finestre, taskbar, terminale, editor, file manager, calcolatrice e strumenti diagnostici. |
+| **Desktop 2** | `desktop2` oppure `gui2` | Desktop con core applicativo separato, bridge di input/framebuffer, file manager, terminale, applicazioni e giochi integrati. |
+| **Desktop 3** | Selezione dal menu post-login | Ambiente di integrazione per runtime, viste, finestre, rendering, rilevamento dispositivi e componenti audio. |
+
+### Desktop 1
+
+Desktop 1 è l’ambiente grafico nativo più esteso del progetto. Le applicazioni sono raggruppate in aree funzionali come dischi, diagnostica, sistema e file.
+
+Sono inclusi strumenti per:
+
+- navigazione del VFS;
+- terminale ed editor;
+- informazioni su CPU, memoria, PCI, ATA e framebuffer;
+- monitoraggio dei task e dell’heap;
+- boot log, interrupt e porte I/O;
+- integrità dell’immagine e mappa dei settori;
+- risoluzione, orologio, calendario e prestazioni;
+- calcolo e conversione di valori.
+
+### Desktop 2
+
+Desktop 2 utilizza il codice contenuto in `desktop2_core/` e comunica con il kernel attraverso `kernel/desktop2.c`. Il bridge:
+
+1. riceve gli eventi di tastiera e mouse già decodificati dai driver;
+2. li converte nel formato eventi del core del desktop;
+3. esegue il frame loop del core applicativo;
+4. converte il framebuffer software nel formato utilizzato dal framebuffer di NATALIZIOOS.
+
+La documentazione tecnica del bridge e delle relative limitazioni è disponibile in [`desktop2_core/README-PORT.md`](desktop2_core/README-PORT.md).
+
+### Desktop 3
+
+Desktop 3 è un ambiente tecnico dedicato alla verifica dello stack grafico e object-oriented del sistema. L’implementazione principale si trova in `kernel/desktop3.c`.
+
+Il desktop costruisce una gerarchia composta da applicazione, finestre e viste. Il rendering viene eseguito attraverso il motore grafico del progetto, con coordinate locali e stato grafico annidato.
+
+La release attuale include:
+
+- pannello di menu;
+- finestra Workspace;
+- finestra Inspector;
+- finestra degli strumenti di sistema;
+- viste e finestre gestite tramite il modello AppKit locale;
+- rendering con riempimenti, bordi, tracciati e traslazioni;
+- rilevamento di CPU, disco e memoria tramite DriverKit;
+- meter audio basato su smoothing e conversione mu-law;
+- verifiche integrate per comandi, memoria, filesystem, bridge e runtime;
+- area degli strumenti scorrevole tramite i tasti freccia.
+
+La risoluzione di riferimento è **1024×768**. Premere `Esc` per tornare al menu di selezione dell’ambiente.
+
+Desktop 3 non è ancora un window manager completo: la sua finalità attuale è verificare l’integrazione degli strati grafici e object-oriented all’interno del kernel.
+
+## Struttura del repository
+
+```text
+boot/             Bootstrap BIOS e caricamento del kernel
+kernel/           Kernel, shell, login e ambienti desktop
+drivers/          Driver hardware e servizi di piattaforma
+fs/               VFS, RAMFS e N.A.T.FS
+userspace/        Applicazioni e componenti user-facing
+desktop2_core/    Core indipendente del Desktop 2
+objc/             Runtime Objective-C locale
+appkit/           NSView, NSWindow e NSApplication
+gfx/              Motore grafico vettoriale e diretto
+mach/             Bridge per le API Mach utilizzate dal progetto
+driverkit/        Modello object-oriented dei dispositivi
+soundkit/         Meter audio e logica di visualizzazione
+ported/           Utility e funzioni libc-style
+scripts/          Script di build e verifica
+tools/            Utility di sviluppo
+assets/           Asset grafici del progetto, incluso il logo vettoriale
+6.10_OLD/         Percorso firmware completo
+6.10_NEW/         Percorso firmware leggero
+```
+
+## Requisiti
+
+### Toolchain
+
+- GNU Make;
+- NASM;
+- Clang e LLD, oppure GCC/binutils con output ELF32 freestanding;
+- Python 3;
+- QEMU System x86.
+
+Su Debian o Ubuntu:
 
 ```bash
-make            # kernel grafico
-make text       # kernel testuale
-make run-gui    # QEMU con interfaccia
-make stato      # rigenera BUILD_STATUS.md
+sudo apt update
+sudo apt install make nasm clang lld qemu-system-x86 python3
 ```
 
-`BUILD_STATUS.md` è **generato** da uno script che conta i file e
-compila, invece di essere scritto a mano e invecchiare dopo tre
-versioni.
+La build non utilizza la libc del sistema ospitante, gli header standard del sistema o un runtime hosted.
 
----
+## Compilazione
 
-## Come è organizzato
+Eseguire i comandi dalla directory principale del repository.
 
-```
-boot/           avvio in assembly, due stadi
-kernel/         nucleo, desktop, shell, filesystem
-drivers/        video, input, ATA, CPU, RTC, audio, vGPU
-fs/             filesystem virtuale
-desktop2_core/  ambiente desktop completo
-objc/           runtime a oggetti
-appkit/         NSView, NSWindow, NSApplication
-gfx/            motori di disegno PostScript e diretto
+### Immagine grafica
+
+```bash
+make
 ```
 
----
+Il comando predefinito genera:
 
-## Scelte di sviluppo
+```text
+natalizioos-0.2.5.33.img
+```
 
-**Compilazione severa.** `-Werror=implicit-function-declaration`: una
-dichiarazione mancante ferma la build invece di passare come avviso.
+Per una ricostruzione esplicita, preceduta dalla pulizia degli output precedenti:
 
-Nasce da un caso concreto: il progetto si compila con gcc su una
-macchina e con clang su un'altra, e clang rifiutava come errore ciò che
-gcc lasciava passare. Le build arrivavano rotte senza che il primo
-ambiente se ne accorgesse.
+```bash
+make graphic
+```
 
-**Verifiche che distinguono.** Ogni componente viene provato con casi
-che falliscono se l'implementazione è sbagliata, non solo se è assente:
-un confronto deve dare esiti opposti nei due versi, una somma di
-controllo deve cambiare se si scambiano due byte, un ordinamento viene
-ricontrollato elemento per elemento dopo l'esecuzione.
+### Immagine testuale
 
----
+```bash
+make text
+```
 
-## Licenze
-NATALIZIOOS è software proprietario.
+Il target genera:
+
+```text
+natalizioos-text-0.2.5.33.img
+```
+
+La build testuale è mantenuta per compatibilità con i flussi precedenti. Il percorso di sviluppo principale è la build grafica.
+
+### Target di utilità
+
+```bash
+make help         # Elenca i target disponibili
+make info         # Mostra le dimensioni dei componenti dell’immagine
+make dump         # Mostra il settore iniziale dell’immagine
+make stato        # Rigenera BUILD_STATUS.md
+make clean        # Rimuove build e immagini generate
+make reset-disk   # Ricrea l’immagine grafica
+```
+
+> `make graphic` elimina gli output precedenti. Conservare una copia dell’immagine prima di eseguire il target se è necessario mantenere un artefatto già generato.
+
+## Esecuzione con QEMU
+
+### Avvio grafico
+
+```bash
+make run-gui
+```
+
+### Avvio senza finestra grafica
+
+```bash
+make run
+```
+
+### Avvio della build testuale
+
+```bash
+make run-text
+```
+
+### Sessione non persistente
+
+Per impedire che le scritture di una sessione modifichino l’immagine:
+
+```bash
+qemu-system-x86_64 \
+  -drive format=raw,file=natalizioos-0.2.5.33.img,snapshot=on \
+  -m 64M
+```
+
+Per i test persistenti è disponibile:
+
+```bash
+make run-persist
+```
+
+Utilizzare sempre una copia dell’immagine durante le prove che modificano il filesystem.
+
+### UART
+
+Per esporre la seriale su TCP `127.0.0.1:4444`:
+
+```bash
+make run-gui-uart
+```
+
+I target `run-text-uart`, `run-gui-proxy` e `run-text-proxy` sono disponibili per i flussi diagnostici documentati nel Makefile.
+
+## Percorso firmware
+
+Le directory `6.10_OLD/` e `6.10_NEW/` contengono due percorsi separati per l’integrazione del kernel in un’immagine firmware. Non sono necessari per il normale sviluppo con QEMU.
+
+```bash
+make firmware-img
+make run-firmware
+make run-firmware-lite
+```
+
+Dopo `make firmware-img`, verificare l’immagine con:
+
+```bash
+./verifica_immagine.sh
+```
+
+Lo script controlla la posizione del kernel, gli offset di caricamento, la geometria dell’immagine e le impronte dei componenti principali.
+
+## Verifica della build
+
+`BUILD_STATUS.md` è un documento generato da `scripts/stato_build.py`. Per aggiornarlo:
+
+```bash
+make stato
+```
+
+La procedura legge la versione dal Makefile, conta le righe dei gruppi sorgente e tenta le build grafica e testuale prima di aggiornare lo stato.
+
+Risultati verificati per questa release:
+
+| Controllo | Risultato |
+|---|---:|
+| Build grafica | Superata |
+| Build testuale | Superata |
+| Kernel grafico | 519.804 byte |
+| Kernel testuale | 156.596 byte |
+| Boot in QEMU | Raggiunta la fase di login grafico |
+| Memoria QEMU utilizzata nel test | 64 MiB |
+| Firma del boot sector | `55 AA` |
+
+La verifica del boot conferma la compilazione e l’avvio iniziale. Non sostituisce la verifica interattiva di ogni desktop, driver e applicazione.
+
+## Limitazioni note
+
+- Il sistema non implementa ancora un isolamento completo dei processi.
+- Il modello di memoria virtuale per processo non è completo.
+- Il bridge Mach copre esclusivamente le API utilizzate dagli strati presenti nel progetto.
+- Desktop 3 è un ambiente di integrazione grafica, non ancora un window manager completo.
+- Desktop 2 copia e converte l’intero framebuffer software a ogni frame.
+- La dimensione del kernel è vincolata dalla capacità di caricamento dello Stage 2.
+- Alcuni componenti sono sperimentali o storici e non appartengono alla build predefinita.
+- Le prestazioni e la compatibilità hardware non sono garantite al di fuori delle configurazioni testate in QEMU.
+
+## Licenze e attribuzioni
+
+L’archivio non contiene un file di licenza unico al livello principale. Il codice originale del progetto è descritto dalla documentazione storica come proprietario; alcuni componenti conservano nei rispettivi file le note di copyright e le condizioni di licenza originali.
+
+Prima di distribuire il repository o aggiungere un identificatore SPDX al progetto, è necessario completare la revisione dei singoli componenti. Le note di copyright presenti nei sorgenti devono essere conservate.
+
+Questa sezione ha carattere informativo e non costituisce una licenza di distribuzione.
+
+## Contributi
+
+Per contribuire al progetto:
+
+1. compilare la modalità interessata;
+2. avviare l’immagine in QEMU;
+3. verificare il percorso di boot coinvolto;
+4. eseguire `make stato` quando cambiano codice o dimensioni;
+5. indicare toolchain, target e configurazione QEMU utilizzati;
+6. preservare le attribuzioni presenti nei componenti interessati.
+
+Le modifiche a bootloader, layout dell’immagine, memoria e framebuffer devono essere isolate e accompagnate da una verifica riproducibile.
+## Immagini
+![Descrizione della foto](01-avvio.png)
+![Descrizione della foto](02-desktop1.png)
+![Descrizione della foto](03-desktop2.png)
+![Descrizione della foto](04-cruscotto.png)
+![Descrizione della foto](06-memoria.png)
+
+
 
