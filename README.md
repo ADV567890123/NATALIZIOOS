@@ -24,7 +24,7 @@ letta dalla mappa E820 all'avvio, non dichiarata a priori.
 
 ## Desktop 1 — gestore a finestre classico
 
-![Desktop 1](immagini/02-desktop1.png)
+![Desktop 1](02-desktop1.png)
 
 Finestre con barra del titolo e pulsanti, cartelle organizzate per
 argomento, applicazioni di sistema: terminale, editor, gestione file,
@@ -34,7 +34,7 @@ strumenti di diagnostica.
 
 ## Desktop 2 — ambiente completo
 
-![Desktop 2](immagini/03-desktop2.png)
+![Desktop 2](03-desktop2.png)
 
 Quasi **13.000 righe**: gestore finestre con spostamento e
 ridimensionamento, dock, menu, filesystem virtuale, ricerca, e **28
@@ -48,7 +48,7 @@ kernel; così costa qualche centinaio di byte di codice.
 
 ### Il cruscotto di sistema
 
-![Cruscotto](immagini/04-cruscotto.png)
+![Cruscotto](04-cruscotto.png)
 
 Dieci pannelli che mostrano lo stato reale, letto dal sistema e non
 scritto a mano: memoria, dischi, attività, processore, adattatore
@@ -58,23 +58,18 @@ Il pannello Processore legge tutto via **CPUID** — produttore,
 famiglia, modello, capacità — e la frequenza la **misura**, contando i
 cicli in un decimo di secondo scandito dal timer.
 
-![Memoria](immagini/06-memoria.png)
+![Memoria](06-memoria.png)
 
 ---
 
 ## Desktop 3 — su AppKit
-
-![Desktop 3](immagini/05-desktop3.png)
-
 Il terzo ambiente è costruito su un'implementazione di **AppKit**, il
-framework a oggetti di NeXT: ogni elemento visibile è una `NSView`,
+framework a oggetti Ispirato a  NeXT: ogni elemento visibile è una `NSView`,
 ogni finestra una `NSWindow`, e il disegno passa da un motore in
 stile PostScript.
-
-L'aspetto segue NeXT: grigi, bordi in rilievo, menu staccato in alto a
+L'aspetto segue ispirando a  NeXT: grigi, bordi in rilievo, menu staccato in alto a
 sinistra invece che barra in cima allo schermo, dock verticale a
 destra.
-
 **Perché è interessante tecnicamente.** La gerarchia delle viste fa sì
 che ogni vista disegni in coordinate proprie, come se fosse a zero: è
 il genitore a spostare l'origine scendendo nell'albero. Questo richiede
