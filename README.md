@@ -35,6 +35,7 @@
 - [Limitazioni note](#limitazioni-note)
 - [Licenza e proprietà intellettuale](#licenza-e-proprietà-intellettuale)
 - [Contributi](#contributi)
+- [Immagini](#Immagini)
 
 ## Obiettivi
 
