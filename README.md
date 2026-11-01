@@ -8,7 +8,7 @@
 [![Stato](https://img.shields.io/badge/stato-development-f0ad4e.svg)](BUILD_STATUS.md)
 [![Licenza](https://img.shields.io/badge/licenza-proprietaria-b91c1c.svg)](LICENSE)
 
-![Logo NATALIZIOOS](06-memoria.png)
+![Logo NATALIZIOOS](logo.png)
 
 ## Identità visiva
 > **NATALIZIOOS** è un sistema operativo sperimentale freestanding per architetture x86 a 32 bit. Il progetto implementa una catena di avvio BIOS, un kernel monolitico, driver hardware, gestione della memoria, filesystem virtuali, shell e tre ambienti desktop sviluppati a basso livello.La release descritta da questo repository è la **`v0.2.5.33`**. L’immagine principale viene generata come disco raw avviabile e può essere eseguita in ambiente **QEMU** per attività di sviluppo, verifica e studio dei sistemi operativi.
